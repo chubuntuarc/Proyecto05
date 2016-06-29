@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -20,7 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
     // Declaramos los elementos Java que se relacionarán con los elementos del XML
     private Spinner spinner;
-    private TextView mensaje;
+    private TextView resultado;
+    private EditText valor1;
+    private EditText valor2;
+    private Button btnCalcular;
+
+    // Variables para el calculo
+    private String dato;
+    private double val1;
+    private double val2;
+    private double res;
 
     // Se crea un adaptador de datos para el control spinner
     private ArrayAdapter<String> adaptador;
@@ -32,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
         // Se relacionan los elementos Java con los elementos del XML
         spinner = (Spinner)findViewById(R.id.spinner);
-        mensaje = (TextView)findViewById(R.id.txtMensaje);
+        resultado = (TextView)findViewById(R.id.txtValorR);
+        valor1 = (EditText)findViewById(R.id.editValor1);
+        valor2 = (EditText)findViewById(R.id.editValor2);
+        btnCalcular = (Button)findViewById(R.id.btnCalcular);
 
 
         // El adaptador recibe tres parametros: this - Contexto de la aplicacion, R.layout... - Indicando que soportada un dropdown - spinnerDatos - El arreglo de datos
@@ -46,14 +60,62 @@ public class MainActivity extends AppCompatActivity {
             // ¿Que ocurre al seleccionar un item determinado?
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long id) {
-                mensaje.setText(spinnerDatos[i].toString());
+                // Se asigna el valor seleccionado del spinner
+                dato = spinnerDatos[i].toString();
+
             }
             // ¿Qué ocurre al no seleccionar nada?
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                mensaje.setText("");
+                resultado.setText("0");
 
             }
         });
+
+        // Programación del "Receptor (Listener)" para el evento onClick del botón
+        btnCalcular.setOnClickListener(new View.OnClickListener() {
+
+
+
+            // Esto se puede generar solo con el comando Alt + Enter sobre el texto OnClickListener
+            @Override
+            public void onClick(View v) {
+                switch (dato){
+                    case "+":
+                        // Se crean los valores double para la operacion
+                        val1 = Double.parseDouble(valor1.getText().toString());
+                        val2 = Double.parseDouble(valor2.getText().toString());
+                        res = val1 + val2;
+                        resultado.setText("" + res);
+                        break;
+                    case "-":
+                        // Se crean los valores double para la operacion
+                        val1 = Double.parseDouble(valor1.getText().toString());
+                        val2 = Double.parseDouble(valor2.getText().toString());
+                        res = val1 - val2;
+                        resultado.setText("" + res);
+                        break;
+                    case "*":
+                        // Se crean los valores double para la operacion
+                        val1 = Double.parseDouble(valor1.getText().toString());
+                        val2 = Double.parseDouble(valor2.getText().toString());
+                        res = val1 * val2;
+                        resultado.setText("" + res);
+                        break;
+                    case "/":
+                        // Se crean los valores double para la operacion
+                        val1 = Double.parseDouble(valor1.getText().toString());
+                        val2 = Double.parseDouble(valor2.getText().toString());
+                        res = val1 / val2;
+                        resultado.setText("" + res);
+                        break;
+                    default:
+                        res = 0;
+                        resultado.setText("" + res);
+                        break;
+                }
+            }
+        });
+
     }
 }
