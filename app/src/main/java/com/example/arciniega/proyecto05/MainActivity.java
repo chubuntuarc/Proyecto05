@@ -42,11 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Establecer un listener para el evento 'Selección de item'
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            // ¿Que ocurre al seleccionar un item determinado?
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mensaje.setText("Hola " + spinner.getSelectedItem().toString());
-            }
 
+            }
+            // ¿Qué ocurre al no seleccionar nada?
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
