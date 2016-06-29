@@ -12,12 +12,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Declaramos un arreglo con los valores que se mostaran en el Spinner
     private String[] spinnerDatos = new String[]{
-            "Robert De Niro",
-            "Chicarcas A Secas",
-            "Nicole Kidman De Gonzalez",
-            "Victor Balderrama",
-            "Simone Simons De Barroso",
-            "Brad Pitt"
+            "+",
+            "-",
+            "*",
+            "/"
     };
 
     // Declaramos los elementos Java que se relacionarán con los elementos del XML
